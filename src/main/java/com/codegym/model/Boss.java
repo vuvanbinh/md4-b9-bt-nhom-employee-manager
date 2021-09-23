@@ -13,7 +13,7 @@ public class Boss {
     private Long id;
 
     @NotEmpty(message = "Bạn đã để trống dữ liệu, mời nhập vào!")
-    @Size(min = 2,max = 10,message = "Tên nhập vào phải là chữ có từ 2 đến 10 ký tự!")
+    @Size(min = 3,max = 20,message = "Tên nhập vào phải là chữ có từ 2 đến 10 ký tự!")
     private String nickName;
 
     @OneToMany

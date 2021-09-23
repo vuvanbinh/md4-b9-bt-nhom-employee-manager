@@ -8,23 +8,23 @@ com/codegym/repository/IBossRepository.java
  com.codegym.repository.IBossRepository
 com/codegym/model/Boss.java
  com.codegym.model.Boss
-com/codegym/service/employee/EmployeeService.java
- com.codegym.service.employee.EmployeeService
-com/codegym/formatter/BossFormatter.java
- com.codegym.formatter.BossFormatter
-com/codegym/service/boss/BossService.java
- com.codegym.service.boss.BossService
-com/codegym/repository/IEmployeeRepository.java
- com.codegym.repository.IEmployeeRepository
 com/codegym/config/AppConfig.java
  com.codegym.config.AppConfig
+com/codegym/formatter/BossFormatter.java
+ com.codegym.formatter.BossFormatter
+com/codegym/controller/EmployeeController.java
+ com.codegym.controller.EmployeeController
+com/codegym/service/employee/EmployeeService.java
+ com.codegym.service.employee.EmployeeService
+com/codegym/model/Employee.java
+ com.codegym.model.Employee
+com/codegym/service/boss/BossService.java
+ com.codegym.service.boss.BossService
+com/codegym/model/EmployeeForm.java
+ com.codegym.model.EmployeeForm
+com/codegym/repository/IEmployeeRepository.java
+ com.codegym.repository.IEmployeeRepository
 com/codegym/controller/BossController.java
  com.codegym.controller.BossController
 com/codegym/service/employee/IEmployeeService.java
  com.codegym.service.employee.IEmployeeService
-com/codegym/model/Employee.java
- com.codegym.model.Employee
-com/codegym/model/EmployeeForm.java
- com.codegym.model.EmployeeForm
-com/codegym/controller/EmployeeController.java
- com.codegym.controller.EmployeeController

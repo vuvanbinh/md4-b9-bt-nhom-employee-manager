@@ -2,7 +2,6 @@ package com.codegym.controller;
 
 import com.codegym.model.Boss;
 import com.codegym.model.Employee;
-import com.codegym.model.EmployeeForm;
 import com.codegym.service.boss.IBossService;
 import com.codegym.service.employee.IEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -65,17 +64,17 @@ public class EmployeeController {
     @GetMapping("create")
     public ModelAndView showCreateForm(){
         ModelAndView mav = new ModelAndView("employee/create");
-        mav.addObject("employee",new EmployeeForm());
+        mav.addObject("employee",new Employee());
         return mav;
     }
     @PostMapping("create")
-    public String createEmployee(@Validated @ModelAttribute("employee")EmployeeForm employeeForm
+    public String createEmployee(@Validated @ModelAttribute("employee")Employee employee
             , BindingResult bindingResult, Model model){
         if (bindingResult.hasErrors()){
             return "employee/create";
         }
-        MultipartFile imgMultipartFile = employeeForm.getImg();
-        MultipartFile audioMultipartFile = employeeForm.getAudio();
+        MultipartFile imgMultipartFile = employee.getImgMultipartFile();
+        MultipartFile audioMultipartFile = employee.getAudioMultipartFile();
 
         String imgStringName = imgMultipartFile.getOriginalFilename();
         String audioStringName = audioMultipartFile.getOriginalFilename();
@@ -85,15 +84,8 @@ public class EmployeeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        Employee employee = new Employee();
-        employee.setName(employeeForm.getName());
-        employee.setAge(employeeForm.getAge());
-        employee.setAddress(employeeForm.getAddress());
-        employee.setBoss(employeeForm.getBoss());
         employee.setImg(imgStringName);
         employee.setAudio(audioStringName);
-
         employeeService.save(employee);
         model.addAttribute("message","Add new employee successful!");
         Optional<String> opString = Optional.empty();
@@ -107,8 +99,11 @@ public class EmployeeController {
         return mav;
     }
     @PostMapping("{id}/edit")
-    public String editEmployee(@ModelAttribute Employee employee, MultipartFile imgMultipartFile
-            , MultipartFile audioMultipartFile, RedirectAttributes redirect){
+    public String editEmployee(@ModelAttribute Employee employee,RedirectAttributes redirect){
+
+        MultipartFile imgMultipartFile = employee.getImgMultipartFile();
+        MultipartFile audioMultipartFile = employee.getAudioMultipartFile();
+
         String imgStringName = imgMultipartFile.getOriginalFilename();
         String audioStringName = audioMultipartFile.getOriginalFilename();
 
@@ -118,14 +113,8 @@ public class EmployeeController {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        if (imgStringName!=""){
-            employee.setImg(imgStringName);
-        }
-        if (audioStringName!=""){
-            employee.setAudio(audioStringName);
-        }
-
+        employee.setImg(imgStringName);
+        employee.setAudio(audioStringName);
         employeeService.save(employee);
         redirect.addFlashAttribute("message","Edit employee successful!");
         return "redirect:/employeePage";

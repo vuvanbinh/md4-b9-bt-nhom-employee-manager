@@ -1,7 +1,11 @@
 package com.codegym.model;
 
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
-import java.util.List;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Employee {
@@ -9,15 +13,24 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotEmpty(message = "Bạn đã để trống dữ liệu, mời nhập vào!")
+    @Size(min = 3,max = 20,message = "Tên nhập vào phải là chữ có từ 3 đến 20 ký tự!")
     private String name;
 
+    @Min(value = 18,message = "Tuổi phải từ 18 trở lên !")
     private int age;
-
+    @NotEmpty(message = "Bạn đã để trống dữ liệu, mời nhập vào!")
     private String address;
 
     private String img;
 
+    @Transient
+    private MultipartFile imgMultipartFile;
+
     private String audio;
+
+    @Transient
+    private MultipartFile audioMultipartFile;
 
     @ManyToOne
     @JoinColumn(name = "boss_id")
@@ -26,13 +39,16 @@ public class Employee {
     public Employee() {
     }
 
-    public Employee(Long id, String name, int age, String address, String img, String audio, Boss boss) {
+    public Employee(Long id, String name, int age, String address, String img
+            , MultipartFile imgMultipartFile, String audio, MultipartFile audioMultipartFile, Boss boss) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.address = address;
         this.img = img;
+        this.imgMultipartFile = imgMultipartFile;
         this.audio = audio;
+        this.audioMultipartFile = audioMultipartFile;
         this.boss = boss;
     }
 
@@ -90,5 +106,21 @@ public class Employee {
 
     public void setBoss(Boss boss) {
         this.boss = boss;
+    }
+
+    public MultipartFile getImgMultipartFile() {
+        return imgMultipartFile;
+    }
+
+    public void setImgMultipartFile(MultipartFile imgMultipartFile) {
+        this.imgMultipartFile = imgMultipartFile;
+    }
+
+    public MultipartFile getAudioMultipartFile() {
+        return audioMultipartFile;
+    }
+
+    public void setAudioMultipartFile(MultipartFile audioMultipartFile) {
+        this.audioMultipartFile = audioMultipartFile;
     }
 }

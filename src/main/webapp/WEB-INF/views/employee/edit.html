@@ -26,8 +26,7 @@
             <td>Image:</td>
             <td>
                 <img th:src="@{'/image/'+${employee.img}}" width="200px" height="200px" alt="">
-                <input type="hidden" th:field="*{img}">
-                <input type="file" name="imgMultipartFile">
+                <input type="file" th:field="*{imgMultipartFile}">
             </td>
         </tr>
         <tr>
@@ -38,8 +37,7 @@
                     <source th:src="@{'/audio/'+${employee.audio}}" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
-                <input type="hidden" th:field="*{audio}">
-                <input type="file" name="audioMultipartFile">
+                <input type="file" th:field="*{audioMultipartFile}">
             </td>
         </tr>
         <tr>

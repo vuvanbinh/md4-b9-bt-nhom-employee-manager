@@ -8,12 +8,12 @@
 <div th:replace="layout::div-1('Boss List','/bossPage/create','Add new boss')"></div>
 <br>
 <div style="text-align: center">
-  <a th:href="@{/employeePage}">EmployeePage</a>
+  <a style="font-size: 20px" th:href="@{/employeePage}">EmployeePage</a>
 </div>
 
-<div style="size: 17px;color: cyan">
+<div>
   <div th:if="${message}">
-    <span th:text="${message}"></span>
+    <span style="color: #00ff51;font-size: 24px" th:text="${message}"></span>
   </div>
 </div>
 
